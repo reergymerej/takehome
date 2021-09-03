@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "takehome"
+version = "0.1.0"
+description = "Supersweet ML/Data Engineer Take Home"
+authors = ["Jeremy Greer <jeremy.greer@anthem.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+pytest-cov = "^2.12.1"
+mypy = "^0.910"
+isort = "^5.9.3"
+black = "^21.8b0"
+flake8 = "^3.9.2"
+pydocstyle = "^6.1.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
