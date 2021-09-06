@@ -1,13 +1,19 @@
-from takehome.go import make_patients_from_df
-import go
+import extract
+import load
+import transform
 from pandas.core.frame import DataFrame
 
-def do_it() -> bool:
-    # TODO: make path dynamic
-    input_path = './inputs'
-    df = go.get_input_data(input_path)
-    print(df)
-    make_patients_from_df(df)
-    return True
+if __name__ == "__main__":
+    # import sys
+    # print(sys.argv)
+    # TODO: get from args
+    source = "./inputs"
 
-do_it()
+    # extract
+    df = extract.get_input_data(source)
+
+    # transform
+    json_list = transform.transform(df)
+
+    # load
+    load.load(json_list)
