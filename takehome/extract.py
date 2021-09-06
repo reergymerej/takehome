@@ -1,11 +1,3 @@
-"""
-
-    # Extract
-    Read data into memory from the inpout source.  In this case, the input is a
-    directory.  
-    
-"""
-
 import pandas as pd
 
 

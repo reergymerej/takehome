@@ -1,7 +1,6 @@
 import extract
 import load
 import transform
-from pandas.core.frame import DataFrame
 
 if __name__ == "__main__":
     # import sys

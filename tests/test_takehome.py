@@ -1,9 +1,7 @@
-from unittest.mock import MagicMock
+from typing import Dict
 
 import pandas as pd
 import pytest
-import pytest_mock
-from pandas.core.frame import DataFrame
 
 import takehome
 from takehome import transform
@@ -16,7 +14,7 @@ def test_version() -> None:
 def test_when_row_is_missing_fields() -> None:
     # TODO: try and build what we can instead of failing on any missing fields
     with pytest.raises(KeyError):
-        row = {}
+        row: Dict[None, None] = {}
         transform.row_to_patient(row)
 
 

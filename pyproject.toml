@@ -42,5 +42,5 @@ exclude_lines = [
 # Activating branch coverage is super important
 branch = true
 omit = [
-  # add your files to omit here
+    "tests/*"
     ]
