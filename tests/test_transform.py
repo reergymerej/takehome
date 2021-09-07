@@ -1,9 +1,12 @@
 import json
+from typing import Literal, Union
 
 import pandas as pd
 import pytest
 
 from takehome.transform import get_gender, transform
+
+Gender = Literal["female", "male", "other", "unknown"]
 
 
 @pytest.mark.parametrize(
@@ -15,7 +18,7 @@ from takehome.transform import get_gender, transform
         ("?", "other"),
     ],
 )
-def test_get_gender(sex, expected_result) -> None:
+def test_get_gender(sex: Union[str, None], expected_result: Gender) -> None:
     assert get_gender(sex) == expected_result
 
 

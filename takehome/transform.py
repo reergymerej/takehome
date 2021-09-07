@@ -16,9 +16,12 @@ def transform(df: pd.DataFrame) -> List[Union[str, bytes]]:
     return json_list
 
 
+Gender = Literal["female", "male", "other", "unknown"]
+
+
 def get_gender(
-    sex: str,
-) -> Literal["female", "male", "other", "unknown"]:
+    sex: Union[str, None],
+) -> Gender:
     if sex is None:
         return "unknown"
     elif sex == "M":

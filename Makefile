@@ -14,7 +14,7 @@ ci: typecheck lint test ## Run all checks (test, lint, typecheck)
 .PHONY: ci
 
 test:  ## Run tests
-	poetry run pytest . --cov=. --cov-report=html
+	poetry run pytest . --cov=. 
 .PHONY: test
 
 lint:  ## Run linting

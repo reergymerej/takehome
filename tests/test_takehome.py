@@ -2,21 +2,11 @@ import json
 from typing import Dict
 from unittest.mock import MagicMock, patch
 
-import pandas as pd
 import pytest
 
 import takehome
 from takehome import load, transform
 from takehome.extract import get_input_data
-
-# def test_init_pajamas():
-#     from takehome import takehome
-#
-#     with mock.patch.object(takehome, "main", return_value=42):
-#         with mock.patch.object(takehome, "__name__", "__main__"):
-#             with mock.patch.object(takehome.sys, 'exit') as mock_exit:
-#                 takehome.init()
-#                 assert mock_exit.call_args[0][0] == 42
 
 
 def test_version() -> None:
@@ -30,36 +20,11 @@ def test_when_row_is_missing_fields() -> None:
         transform.row_to_patient(row)
 
 
-@pytest.fixture
-def dummy_row() -> pd.Series:
-    return pd.Series(
-        {
-            "name": "Richard Clarke",
-            "sex": "M",
-            "address": "533 Sarah Summit\nCharlesport, TN 87961",
-            "email": "iramirez@yahoo.com",
-            "birthdate": "1913-05-23",
-            "ssn": "074-22-3263",
-        }
-    )
-
-
-def test_fixture() -> None:
-    row = dummy_row
-    expected = row
-    actual = row
-    print(row)
-    assert expected == actual
-
-
-@patch("pandas.read_parquet")
-def test_parquet_is_read_from_provided_path(mock) -> None:
-    input_path = "some/sweet/path/"
-    get_input_data(input_path)
-    mock.assert_called_once_with(input_path)
-
-
-# load
+def test_parquet_is_read_from_provided_path() -> None:
+    with patch("pandas.read_parquet") as mock:
+        input_path = "some/sweet/path/"
+        get_input_data(input_path)
+        mock.assert_called_once_with(input_path)
 
 
 def test_write_file_opens_correctly() -> None:
@@ -76,7 +41,7 @@ def test_loading_json_to_dir_create_missing_dir() -> None:
     with patch("os.path.isdir") as mock_isdir:
         mock_isdir.return_value = False
         with patch("os.mkdir") as mock_mkdir:
-            json_list = []
+            json_list = [json.dumps({})]
             destination = "some/path/"
             load.load(json_list, destination)
             mock_mkdir.assert_called_with(destination)
