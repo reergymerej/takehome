@@ -10,7 +10,7 @@ def write_file(destination: str, content: str) -> None:
     f.close()
 
 
-def load(json_list: List[str], destination: str = "./output") -> None:
+def load(json_list: List[str], destination: str) -> None:
     if not os.path.isdir(destination):
         os.mkdir(destination)
 

@@ -1,18 +1,25 @@
+from typing import List
 import extract
 import load
 import transform
 
+def get_source(args: List[str]) -> str:
+    if len(args) > 0:
+        return args[0] 
+    return "./inputs"
+
+def get_dest(args: List[str]) -> str:
+    if len(args) > 1:
+        return args[1] 
+    return "./output"
+
 if __name__ == "__main__":
-    # import sys
-    # print(sys.argv)
-    # TODO: get from args
-    source = "./inputs"
+    import sys
+    args = sys.argv[1:]
+    source = get_source(args)
+    destination = get_dest(args)
+    print(source, destination)
 
-    # extract
     df = extract.get_input_data(source)
-
-    # transform
     json_list = transform.transform(df)
-
-    # load
-    load.load(json_list)
+    load.load(json_list, destination)
