@@ -16,18 +16,13 @@ make install
 ## Usage
 
 ```bash
-# read/write here
 poetry run python takehome
 
 # specify different input/output locations
 poetry run python takehome dir_with_member_parquets/ output_dir/
 ```
 
-## Other
-
+For linting, testing, and other options, run 
 ```bash
-# see all options
 make
 ```
-
-## Notes
