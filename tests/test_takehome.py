@@ -1,17 +1,24 @@
 import json
-from typing import Dict
+from typing import Dict, List, Tuple
 from unittest.mock import MagicMock, patch
 
 import pytest
 
 import takehome
-from takehome import load, transform
+from takehome import load, transform, paths
 from takehome.extract import get_input_data
 
 
-def test_version() -> None:
-    assert takehome.__version__ == "0.1.0"
-
+@pytest.mark.parametrize(
+    "args, expected_result",
+    [
+        ([], ('./inputs', './output')),
+        (['some/cool/dir'], ('some/cool/dir', './output')),
+        (['some/cool/dir', '/dev/null'], ('some/cool/dir', '/dev/null')),
+    ],
+)
+def test_get_paths(args: List[str], expected_result: Tuple[str, str]) -> None:
+    assert paths.get_paths(args) == expected_result
 
 def test_when_row_is_missing_fields() -> None:
     # TODO: try and build what we can instead of failing on any missing fields
