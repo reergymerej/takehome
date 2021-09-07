@@ -20,7 +20,7 @@ def load(json_list: List[str], destination: str = "./output") -> None:
             filename = f"{patient_uuid}.json"
             filepath = os.path.join(destination, filename)
             write_file(filepath, item)
-        except:
+        except:  # noqa: E722
             pass
             # TODO: log error
 
